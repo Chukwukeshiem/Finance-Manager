@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Me - Chukwukeshiem Sam</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header, footer {
+            background-color: #4A90E2;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            display: inline-block;
+            color: #4A90E2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #4A90E2;
+            color: white;
+        }
+        section {
+            padding: 2em;
+            margin: 1em;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .project {
+            background-color: #fff;
+            padding: 1em;
+            margin-bottom: 1em;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .project a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+        .project a:hover {
+            text-decoration: underline;
+        }
+        .project:hover {
+            transform: translateY(-10px);
+        }
+        .contact-info p {
+            margin: 0.5em 0;
+        }
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .skills-list li {
+            background: #f4f4f4;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        @media (max-width: 600px) {
+            nav a {
+                float: none;
+                display: block;
+                text-align: left;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="floating">
+    <h1>Hire Me - Chukwukeshiem Sam</h1>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" class="floating">
+    <h2>About Me</h2>
+    <p>Hello! I'm Chukwukeshiem Sam, a student with a passion for IT development. I'm eager to apply my skills in a professional environment and continue growing in the tech industry. I'm currently studying at Sheridan College and have previous experience in retail and cashier work.</p>
+</section>
+
+<section id="skills" class="floating">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+        <li>HTML & CSS</li>
+        <li>JavaScript</li>
+        <li>Node.js</li>
+        <li>Python</li>
+    </ul>
+</section>
+
+<section id="projects" class="floating">
+    <h2>Projects</h2>
+    <div class="project">
+        <h3>Project 1: Date and Time Display</h3>
+        <p>An application that displays the current date and time.</p>
+        <a href="http://127.0.0.1:5500/Question1.html" target="_blank">View Project</a>
+    </div>
+    <div class="project">
+        <h3>Project 2: Even or Odd Checker</h3>
+        <p>A simple web application to check if a number is even or odd.</p>
+        <a href="http://127.0.0.1:5500/Question2.html" target="_blank">View Project</a>
+    </div>
+    <div class="project">
+        <h3>Project 3: Simple Browser Game</h3>
+        <p>A basic browser game demonstrating web development skills.</p>
+        <a href="simple_browser_game.html" target="_blank">View Project</a>
+    </div>
+    <div class="project">
+        <h3>Project 4: Snake Game</h3>
+        <p>A classic Snake game implemented using HTML, CSS, and JavaScript.</p>
+        <a href="snake.html" target="_blank">Play Snake Game</a>
+    </div>
+    <div class="project">
+        <h3>Project 5: Finance Manager App</h3>
+        <p>A dynamic Finace application that  adds, edit, and delete income and expenses, categorize transactions, provide insights and visualizations of spending habits, and stores data in localStorage .</p>
+        <a href="Finance Manager.html" target="_blank">View Finance App</a>
+    </div>
+</section>
+
+<section id="experience" class="floating">
+    <h2>Experience</h2>
+    <p>I have experience working in retail and as a cashier. Additionally, I have practical experience in IT development through personal projects and my studies.</p>
+</section>
+
+<section id="education" class="floating">
+    <h2>Education</h2>
+    <p><strong>Great Lakes College of Toronto</strong> - Certificate</p>
+    <p><strong>Sheridan College</strong> - Diploma (Currently pursuing)</p>
+</section>
+
+<section id="contact" class="floating">
+    <h2>Contact</h2>
+    <div class="contact-info">
+        <p>Email: <a href="mailto:chukwukeshiemsam@gmail.com">chukwukeshiemsam@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/chukwukeshiem-sam" target="_blank">Chukwukeshiem Sam</a></p>
+        <p>Phone: 289-834-9710</p>
+    </div>
+</section>
+
+<footer class="floating">
+    <p>&copy; 2024 Chukwukeshiem Sam. All rights reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('section');
+        const options = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
+
+</body>
+</html>

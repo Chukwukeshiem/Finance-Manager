@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time Display</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        #datetime {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+            transition: transform 0.3s;
+        }
+        #datetime:hover {
+            transform: scale(1.1);
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Date and Time Display</h1>
+<div id="datetime"></div>
+
+<script>
+    function updateDateTime() {
+        const now = new Date();
+        const dateTimeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        document.getElementById('datetime').textContent = dateTimeString;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+</script>
+
+</body>
+</html>
