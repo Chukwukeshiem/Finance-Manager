@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .input-group input,
+        .input-group select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .input-group button {
+            padding: 10px;
+            border: none;
+            background: #4A90E2;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background: #357ABD;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .delete-btn {
+            background: #F44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background: #D32F2F;
+        }
+        .chart-container {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Personal Finance Manager</h1>
+    <div class="input-group">
+        <input type="text" id="description" placeholder="Description" />
+        <input type="number" id="amount" placeholder="Amount" />
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+        <select id="category">
+            <option value="salary">Salary</option>
+            <option value="food">Food</option>
+            <option value="travel">Travel</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="other">Other</option>
+        </select>
+        <button onclick="addTransaction()">Add</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="transaction-list"></tbody>
+    </table>
+    <div class="chart-container">
+        <canvas id="expenseChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', loadTransactions);
+
+    function loadTransactions() {
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        const transactionList = document.getElementById('transaction-list');
+        transactionList.innerHTML = '';
+        transactions.forEach((transaction, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${transaction.description}</td>
+                <td>${transaction.amount}</td>
+                <td>${transaction.type}</td>
+                <td>${transaction.category}</td>
+                <td><button class="delete-btn" onclick="deleteTransaction(${index})">Delete</button></td>
+            `;
+            transactionList.appendChild(row);
+        });
+        updateChart();
+    }
+
+    function addTransaction() {
+        const description = document.getElementById('description').value;
+        const amount = document.getElementById('amount').value;
+        const type = document.getElementById('type').value;
+        const category = document.getElementById('category').value;
+
+        if (description && amount && type && category) {
+            const transaction = { description, amount: parseFloat(amount), type, category };
+            const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.push(transaction);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            clearInputFields();
+            loadTransactions();
+        } else {
+            alert('Please fill in all fields.');
+        }
+    }
+
+    function deleteTransaction(index) {
+        const transactions = JSON.parse(localStorage.getItem('transactions'));
+        transactions.splice(index, 1);
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+        loadTransactions();
+    }
+
+    function clearInputFields() {
+        document.getElementById('description').value = '';
+        document.getElementById('amount').value = '';
+        document.getElementById('type').value = 'income';
+        document.getElementById('category').value = 'salary';
+    }
+
+    function updateChart() {
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        const expenseCategories = transactions
+            .filter(transaction => transaction.type === 'expense')
+            .reduce((acc, transaction) => {
+                acc[transaction.category] = (acc[transaction.category] || 0) + transaction.amount;
+                return acc;
+            }, {});
+
+        const ctx = document.getElementById('expenseChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(expenseCategories),
+                datasets: [{
+                    label: 'Expenses',
+                    data: Object.values(expenseCategories),
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#9966FF'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
